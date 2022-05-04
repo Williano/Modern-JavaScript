@@ -1,2 +1,2 @@
 # Modern-JavaScript
-Repository for learning modern JavaScript 
+Repository for revising and learning modern JavaScript 
