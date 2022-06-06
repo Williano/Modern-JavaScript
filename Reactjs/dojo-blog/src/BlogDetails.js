@@ -1,3 +1,4 @@
+import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom/cjs/react-router-dom.min";
 import useFetch from "./useFetch";
 
@@ -8,6 +9,17 @@ const BlogDetails = () => {
     isLoading,
     error,
   } = useFetch("http://localhost:8010/blogs/" + id);
+  const history = useHistory();
+
+  const handleClick = (e) => {
+    e.preventDefault();
+
+    fetch("http://localhost:8010/blog/" + blog.id, {
+      method: "DELETE",
+    }).then(() => {
+      history.push("/");
+    });
+  };
 
   return (
     <div className="blog-details">
@@ -19,6 +31,7 @@ const BlogDetails = () => {
           <p>Written by {blog.author}</p>
 
           <div>{blog.body}</div>
+          <button onClick={handleClick}>Delete</button>
         </article>
       )}
     </div>
